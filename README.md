@@ -68,10 +68,24 @@ CMD ["npm", "test"]
 
 1. 將 ubuntu update 獨立成一個 image。
 2. 再從這個更新過的 image 去安裝 git，也獨立成一個 image。
-3. 接續 2 這個 image 去安裝 nodejs。
+3. 接續 2 這個 image 去安裝 nodejs，然後這些都 push 上去。
 4. automated build 這邊的 Dockerfile 就從 3 做出來的 image 去 build。
 
-先把基礎環境做好，這就不用重複去 build 這些基礎的環境了，每次的 automated build 只需要從 pull 程式碼開始即可。
+於是 Dockerfile 就只剩下這些：
+
+```
+FROM azole/testbase
+
+# pull 
+RUN git clone https://github.com/azole/docker-auto-build-test.git
+WORKDIR /docker-auto-build-test
+RUN npm install
+
+# run test
+CMD ["npm", "test"]
+```
+
+先把基礎環境做好，這就不用重複去 build 這些基礎的環境了，每次的 automated build 只需要從 pull 程式碼開始即可，image build 的速度會快上許多。
 
 更進一步的話，還可以搭配 CI 一起做。
 
