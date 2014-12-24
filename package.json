@@ -1,0 +1,27 @@
+{
+  "name": "docker-auto-build-test",
+  "private": true,
+  "version": "1.0.0",
+  "description": "docker automated build test",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azole/docker-auto-build-test.git"
+  },
+  "author": "azole",
+  "license": "CC",
+  "bugs": {
+    "url": "https://github.com/azole/docker-auto-build-test/issues"
+  },
+  "homepage": "https://github.com/azole/docker-auto-build-test",
+  "devDependencies": {
+    "mocha": "^2.1.0",
+    "should": "^4.4.1"
+  }
+}
